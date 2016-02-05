@@ -1,0 +1,11 @@
+﻿.thumbImage {
+            max-width: 640;
+            max-height: 480;
+        }
+
+
+*html.thumbImage {
+    width: expression(this.width>150&&this.width>this.height?150:auto);
+    height: expresion(this.height>150?150:auto);
+}
+

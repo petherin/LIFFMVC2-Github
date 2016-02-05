@@ -1,0 +1,88 @@
+﻿@using LIFFMVC2.Helpers
+@model LIFFMVC2.Models.AlphabeticalPagingViewModel
+
+@{
+    ViewBag.Title = "Home";
+}
+
+<h2>Welcome</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<ul class="pagination alpha">
+    @foreach (var link in Model.Alphabet)
+    {
+        if (Model.FirstLetters.Contains(link) || (Model.NamesStartWithNumbers && link == "0-9") || link == "All")
+        {
+            if (Model.SelectedLetter == link || Model.SelectedLetter.IsEmpty() && link == "All")
+            {
+                <li class="active"><span>@link</span></li>
+            }
+            else
+            {
+                <li>@Html.ActionLink(link, "Index", new { selectedLetter = link })</li>
+            }
+        }
+        else
+        {
+            <li class="inactive"><span>@link</span></li>
+        }
+    }
+</ul>
+
+<table class="table-striped">
+
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Films.FirstOrDefault().Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Films.FirstOrDefault().Year)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Films.FirstOrDefault().Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Films.FirstOrDefault().TrailerURL)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Films.FirstOrDefault().RunningTime)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Films.FirstOrDefault().Subtitles)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (LIFFMVC2.Models.Film item in Model.Films) {
+    <tr>
+        <td>
+            @Html.ActionLink(item.Title, "Details", new { id = item.Id })
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Year)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @*@Html.Hyperlink(item.TrailerURL, "Trailer")*@
+            @Html.ExternalLink(item.TrailerURL, "Trailer", new { target = "_blank" })
+          @*  @Html.DisplayFor(modelItem => item.TrailerURL)*@
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RunningTime)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Subtitles)
+        </td>
+        <td>
+            @*@Html.ActionLink("Edit", "Edit", new { id=item.Id }) |*@
+         @*   @Html.ActionLink("Details", "Details", new { id=item.Id })*@
+         @*   @Html.ActionLink("Delete", "Delete", new { id=item.Id })*@
+        </td>
+    </tr>
+}
+
+</table>

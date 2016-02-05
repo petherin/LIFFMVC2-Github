@@ -1,0 +1,16 @@
+﻿@*@model IEnumerable<LIFFMVC2.Models.Film>*@
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Upload</h2>
+
+@using (Html.BeginForm("Upload", "Upload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <label for="file">Upload Programme</label>
+    <input type="file" name="file" id="file" /><br><br>
+    <input type="submit" value="Upload Programme" />
+    <br><br>
+    @ViewBag.Message
+}

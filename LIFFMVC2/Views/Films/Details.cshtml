@@ -1,0 +1,74 @@
+﻿@using LIFFMVC2.Helpers
+@model LIFFMVC2.Models.Film
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>@Html.LabelForModel(Model.Title)</h2>
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+
+        </dt>
+
+        <dd>
+
+            <div id="slideshowWrapper">
+                <ul id="slideshow">
+                    <li><img src="@Url.Content(Model.Images[0].Path)" width="670" height="330" border="0" alt="" /></li> <!-- This is the last image in the slideshow -->
+                    <li><img src="@Url.Content(Model.Images[1].Path)"  width="670" height="330" border="0" alt="" /></li>
+                    <li><img src="@Url.Content(Model.Images[2].Path)"  width="670" height="330" border="0" alt="" /></li> <!-- This is the first image in the slideshow -->
+                </ul><br clear="all" />
+            </div>
+
+                @*<img src="@Url.Content(Model.Images[0].Path)" alt="Image" class="thumbImage" />*@
+</dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Year)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Year)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TrailerURL)
+        </dt>
+
+        <dd>
+            @Html.ExternalLink(Model.TrailerURL, "Trailer", new { target = "_blank" })
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RunningTime)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RunningTime)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Subtitles)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Subtitles)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @*@Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |*@
+    @Html.ActionLink("Back to List", "Index")
+</p>
